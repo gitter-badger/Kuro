@@ -1,0 +1,46 @@
+/** webkit style reset **/
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+input, button, select, textarea {
+  outline: none
+}
+
+textarea {
+  resize: none
+}
+
+/** webkit style reset - end **/
+
+html, body, div, #editor {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  overflow: hidden;
+
+  font-family: punctuation,"PingFangSC-Regular","Microsoft Yahei","sans-serif";
+}
+
+#editor {
+  margin: 1%;
+  padding: 10px;
+  width: 96%;
+  height: 94%;
+
+  font-size: 14px;
+  line-height: 22px;
+  border: 1px solid #ccc;
+  text-rendering: optimizeLegibility;
+}
