@@ -20,7 +20,6 @@ textarea {
 }
 
 /** webkit style reset - end **/
-
 html, body, div, #editor {
   margin: 0;
   padding: 0;
@@ -33,11 +32,25 @@ html, body, div, #editor {
   font-family: punctuation,"PingFangSC-Regular","Microsoft Yahei","sans-serif";
 }
 
+#toolbar {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    top: 2%;
+    left: 92%;
+    text-align: right;
+}
+
+#toolbar li {
+  list-style: none;
+}
+
 #editor {
-  margin: 1%;
-  padding: 10px;
-  width: 96%;
-  height: 94%;
+  margin: 0.5%;
+  padding: 1%;
+  width: 97%;
+  height: 97%;
 
   font-size: 14px;
   line-height: 22px;

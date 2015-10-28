@@ -1,5 +1,8 @@
 (function (the) {
 
+  var tab = '   ';
+  var tw = tab.length;
+
   $('#editor').on('keydown', function (e) {
 
     var editor = this;
@@ -14,10 +17,23 @@
       var before = sourceCode.substring(0, selectionStart);
       var after = sourceCode.substring(selectionEnd);
 
-      editor.value = before + '   ' + after;
-      editor.selectionStart += 3;
-      editor.selectionEnd += 3;
-
+      if(e.shiftKey){
+        var shiftIndex = selectionStart - 3;
+        var shiftTxt = sourceCode.substring(shiftIndex, selectionStart);
+        if(shiftTxt.indexOf('\n') < 0 && shiftTxt.trim() === ''){
+          // 当回退的三个字符均为空白字符，且不包含换行
+          editor.value = before.substring(0, shiftIndex) + after;
+          selectionStart = shiftIndex;
+          selectionEnd = shiftIndex;
+        }
+      } else {
+        editor.value = before + tab + after;
+        selectionStart += tw;
+        selectionEnd = selectionStart;
+      }
+      // 仅兼容 webkit
+      editor.focus();
+      editor.setSelectionRange(selectionStart, selectionEnd);
       e.preventDefault();
       return false;
     }

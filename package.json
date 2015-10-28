@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "electron-prebuilt": "^0.33.3",
-    "zeptojs": "^1.1.4"
+    "font-awesome": "^4.4.0",
+    "zepto": "0.0.4"
   },
   "dependencies": {
-    "marked": "^0.3.5",
-    "nodegit": "^0.5.0",
-    "shelljs": "^0.5.3"
+    "shelljs": "^0.5.3",
+    "sqlite3": "^3.1.0"
   }
 }

@@ -1,7 +1,6 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
 
-
 // 当所有窗口被关闭了，退出。
 app.on('window-all-closed', function () {
   // 在 OS X 上，通常用户在明确地按下 Cmd + Q 之前
@@ -11,10 +10,10 @@ app.on('window-all-closed', function () {
   }
 });
 
-
 // 当 Electron 完成了初始化并且准备创建浏览器窗口的时候
 // 这个方法就被调用
 app.on('ready', function () {
+  
   // 创建浏览器窗口。
   var window = new BrowserWindow({
     'width': 1024,
@@ -23,7 +22,7 @@ app.on('ready', function () {
     'min-width': 800,
     'min-height': 600,
     'resizable': true,
-    'always-on-top': true
+    'always-on-top': false
   });
 
   // 加载应用的 index.html
@@ -32,6 +31,10 @@ app.on('ready', function () {
   // 打开开发工具
   window.openDevTools();
 
+  // 隐藏菜单
+  window.setMenu(null);
+  window.setAutoHideMenuBar(true);
+
   // 当 window 被关闭，这个事件会被发出
   window.on('closed', function () {
     // 取消引用 window 对象，如果你的应用支持多窗口的话，
@@ -39,4 +42,5 @@ app.on('ready', function () {
     // 但这次不是。
     window = null;
   });
+
 });
