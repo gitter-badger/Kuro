@@ -8,20 +8,27 @@ if (!test('-d', libHome)) {
 
 var modulesHome = 'node_modules/';
 
-// zepto
-cp('-Rf', modulesHome + 'zepto/zepto.min.js', libHome);
-
 // font-awesome
-var fontAwesomeHome = libHome + 'font-awesome/';
+var fontAwesomeDir = libHome + 'font-awesome/';
 
-if (!test('-d', libHome + 'fa')) {
-  mkdir(fontAwesomeHome);
-  mkdir(fontAwesomeHome + 'css/');
-  mkdir(fontAwesomeHome + 'fonts/');
+if (!test('-d', fontAwesomeDir)) {
+  mkdir(fontAwesomeDir);
 }
 
-cp('-Rf', modulesHome + 'font-awesome/css/*.min.css', fontAwesomeHome + 'css/');
-cp('-Rf', modulesHome + 'font-awesome/fonts/*', fontAwesomeHome + 'fonts/');
+var fontAwesomeCssDir = fontAwesomeDir + 'css/';
+
+if (!test('-d', fontAwesomeCssDir)) {
+  mkdir(fontAwesomeCssDir);
+}
+var fontAwesomeFontsDir = fontAwesomeDir + 'fonts/';
+
+if (!test('-d', fontAwesomeFontsDir)) {
+  mkdir(fontAwesomeFontsDir);
+}
+
+var fontAwesomeLibHome = modulesHome + 'font-awesome/';
+cp('-Rf', fontAwesomeLibHome + 'fonts/*', fontAwesomeFontsDir);
+cp('-Rf', fontAwesomeLibHome + 'css/*.min.css', fontAwesomeCssDir);
 
 console.log('All right!\n');
 

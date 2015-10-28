@@ -1,20 +1,31 @@
 {
-  "name": "kuro",
+  "name": "Kuro",
   "version": "1.0.0",
   "main": "app/nae.js",
-  "description": "",
+  "description": "Kuro - A powerful hosts file editor!",
   "author": "MurphyL",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MurphyL/Kuro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MurphyL/Kuro/issues"
+  },
+  "homepage": "https://github.com/MurphyL/Kuro",
   "scripts": {
-    "dev": "electron . --colors",
+    "dev": "electron . --colors 'require(\"sqlite3\")'",
     "build": "node build.js"
   },
   "devDependencies": {
     "electron-prebuilt": "^0.33.3",
     "font-awesome": "^4.4.0",
-    "zepto": "0.0.4"
+    "moment": "^2.10.6",
+    "noty": "^2.3.7"
   },
   "dependencies": {
+    "jquery": "^2.1.4",
+    "nedb": "^1.2.1",
     "shelljs": "^0.5.3",
     "sqlite3": "^3.1.0"
   }

@@ -1,24 +1,10 @@
-var sqlite3 = require('sqlite3').verbose();
-var fs = require('fs');
-var database = './kuro.db';
+var Datastore = require('nedb')
+  , db = new Datastore();
 
-var db = new sqlite3.Database('./sqlite3.db');
 
-// SELECT name FROM sqlite_master WHERE type='table' AND name='table_name';
-
-db.serialize(function() {
-
-  db.run("CREATE TABLE  IF NOT EXISTS lorem (info TEXT)");
- 
-  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-  for (var i = 0; i < 10; i++) {
-      stmt.run("Ipsum " + i);
-  }
-  stmt.finalize();
- 
-  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-      console.log(row.id + ": " + row.info);
-  });
+// Type 2: Persistent datastore with manual loading
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'app/data/datafile.db' });
+db.loadDatabase(function (err) {    // Callback is optional
+  console.log(err)
 });
- 
-db.close();

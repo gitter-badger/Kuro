@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="zh-CN" itemscope itemtype="http://schema.org/WebPage">
 <head>
-  <title>HostX - A powerful hosts file editor!</title>
+  <title>Kuro - A powerful hosts project manager!</title>
   <meta charset="utf-8">
   <meta http-equiv="cleartype" content="on"/>
   <meta name="format-detection" content="telphone=no, email=no"/>
-  <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">	
+  <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/style.css">
-  
 </head>
 <body oncopy="return false" oncut="return false" onselectstart="return false">
   <div id="container">
-  	<ul id="toolbar">
+  	<!--<ul id="toolbar">
   		<li><a href="javascript:;"><i class="fa fa-2x fa-search"></i></a></li>
   		<li><a href="javascript:;"><i class="fa fa-2x fa-plus"></i></a></li>
-  	</ul>
+  	</ul>-->
     <textarea name="editor" id="editor" cols="30" rows="10" placeholder="在这里编辑您的当前显示方案…" autofocus></textarea>
   </div>
 </body>
-<script src="../lib/zepto.min.js"></script>
+<script type="text/html" id="date-template">
+  <div style="display: flex; width: 180px;">
+    <div style="flex: 3; font-size: 3.5em; line-height: 1em;">#DATE#日</div>
+    <div style="flex: 2">
+      <div style="font-size: 2em; line-height: 1em;">#MONTH#月</div>
+      <div style="font-size: 1.2em;">#YEAR#年</div>
+    </div>
+  </div>
+  <p style="padding: 0; margin: 8px 0;">#YEAR#年的第#WEEK_OF_YEAR#周， #DAY_OF_YEAR#天。</p>
+</script>
 <script src="../js/index.js"></script>
 </html>
