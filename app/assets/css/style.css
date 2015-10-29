@@ -46,6 +46,11 @@ html, body, div, #editor {
   list-style: none;
 }
  */
+
+.hidden {
+  display: none;
+}
+
 #editor {
   margin: 0.5%;
   padding: 1%;

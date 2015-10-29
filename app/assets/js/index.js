@@ -6,7 +6,6 @@
   var dateString = now.format('YYYY-MM-DD');
 
   var popDate = function () {
-    var noty = require('noty');
     var year = now.format('YYYY');
     var template = $('#date-template').text();
 
@@ -31,10 +30,11 @@
     template = template.replace(/#W_CODE#/, weatherCode);
     template = template.replace(/#W_TEXT#/, weatherText);
 
-    noty({
+    require('noty')({
       text: template,
       type: 'alert',
       layout: 'topRight',
+      closeWith: [],
       theme: 'relax'
     });
   };
@@ -121,10 +121,10 @@
   // editor
   var tab = '   ';
   var tw = tab.length;
+  var editor = $('#editor');
+  editor.data('editor_hosts_cached', hostsText);
 
-  $('#editor').text(hostsText).on('keydown', function (e) {
-
-    var editor = this;
+  editor.text(hostsText).on('keyup', function (e) {
 
     // 编辑器的内容
     var sourceCode = this.value;
@@ -156,28 +156,113 @@
       e.preventDefault();
       return false;
     }
-
+    if(e.keyCode === 27){
+      editor.val(editor.data('editor_hosts_cached'));
+      editor.removeAttr('style');
+      otherHosts = [];
+      hitsHosts = [];
+      saveNoty.close()
+    }
     if (!e.ctrlKey) {
       return;
     }
     switch (e.keyCode) {
+      case 70:// F
+        if(editor.attr('style')){
+          if(window['saveError'] && !window['saveError']['closed']){
+            break;
+          }
+          window.saveError = require('noty')({
+            text: '请保存已变更的内容！',
+            type: 'error',
+            layout: 'topRight',
+            timeout: 3000,
+            theme: 'relax'
+          });
+          break;
+        }
+        $(this).blur();
+        $('.search').show().focus();
+        break;
       case 80:// P
-        var marked = the('marked');
-        marked.setOptions({
-          renderer: new marked.Renderer(),
-          gfm: true,
-          tables: true,
-          breaks: false,
-          pedantic: false,
-          sanitize: true,
-          smartLists: true,
-          smartypants: false
-        });
-        console.log(marked(sourceCode));
+        console.log(sourceCode);
+        break;
       case 83:// S
-        console.log(sourceCode)
-        ;
+        console.log('save', e.keyCode, new Date() * 1);
+        editor.removeAttr('style');
+        if(otherHosts.length == 0 && hitsHosts.length == 0){
+          break;
+        }
+        var editedText = editor.val()
+        var otherHostsText = otherHosts.join('\n');
+        if(otherHosts.length == 0){
+          editor.val(editedText);
+        }
+        editor.val(otherHostsText + '\n' + editedText);
+        editor.data('editor_hosts_cached', editor.val());
+        otherHosts = [];
+        hitsHosts = [];
+        saveNoty.close()
+        break;
     }
+  });
+
+  var filterEditorContent = function(text){
+    var hosts = editor.data('editor_hosts_cached');
+    editor.data('history', hosts);
+    var hostRows = hosts.split('\n');
+    window.hitsHosts = [];
+    window.otherHosts = [];
+    var regex = new RegExp(text);
+    for(var i in hostRows){
+      var row = hostRows[i].trim();
+      if(row === ''){
+        continue;
+      }
+      if(!/^#/.test(row) && regex.test(row)){
+        window.hitsHosts.push(row);
+      } else {
+        window.otherHosts.push(row);
+      }
+    }
+    return window.hitsHosts;
+  };
+
+  $('#search').on('keyup', function (e) {
+    if(e.keyCode === 27){// ESC
+      $('.search').hide().val('');
+      editor.focus();
+      return;
+    }
+    var val = this.value.trim();
+    if(e.keyCode === 8 && val === ''){
+      editor.val(editor.data('editor_hosts_cached'));
+      return;
+    }
+    if(val === ''){
+      return;
+    }
+    if(e.keyCode === 13){// Enter
+      $('.search').hide().val('');
+      editor.focus().css({
+        border: '1px dashed red'
+      });
+      window.saveNoty = require('noty')({
+        text: '按 Ctrl + S 保存修改的内容，ESC 撤销该操作！',
+        type: 'warning',
+        layout: 'topRight',
+        theme: 'relax'
+      });
+      console.log(saveNoty);
+      return;
+    }
+    if($(this).data('history') === val){
+      return;
+    }
+    // 过滤数据，并存储
+    var hits = filterEditorContent(val);
+    editor.val(hits.join('\n'));
+    $(this).data('history', val);
   });
 
 
