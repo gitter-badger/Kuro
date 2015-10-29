@@ -14,19 +14,19 @@
   },
   "homepage": "https://github.com/MurphyL/Kuro",
   "scripts": {
-    "dev": "electron . --colors 'require(\"sqlite3\")'",
+    "dev": "electron . --colors",
     "build": "node build.js"
   },
   "devDependencies": {
     "electron-prebuilt": "^0.33.3",
     "font-awesome": "^4.4.0",
     "moment": "^2.10.6",
-    "noty": "^2.3.7"
+    "noty": "^2.3.7",
+    "unirest": "^0.4.2"
   },
   "dependencies": {
     "jquery": "^2.1.4",
     "nedb": "^1.2.1",
-    "shelljs": "^0.5.3",
-    "sqlite3": "^3.1.0"
+    "shelljs": "^0.5.3"
   }
 }
