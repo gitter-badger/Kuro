@@ -1,0 +1,5 @@
+{
+  "hefeng_secret_key": "56f74113649f43b8ba28ba316a8377d8",
+  "hefeng_service_url": "api.heweather.com/x3/weather",
+  "httpbin_service_url": "http://httpbin.org/ip"
+}
