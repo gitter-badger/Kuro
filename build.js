@@ -30,5 +30,27 @@ var fontAwesomeLibHome = modulesHome + 'font-awesome/';
 cp('-Rf', fontAwesomeLibHome + 'fonts/*', fontAwesomeFontsDir);
 cp('-Rf', fontAwesomeLibHome + 'css/*.min.css', fontAwesomeCssDir);
 
+
+var modulesHome = 'node_modules/';
+
+// font-awesome
+var codemirrorDir = libHome + 'codemirror/';
+
+if (!test('-d', codemirrorDir)) {
+  mkdir(codemirrorDir);
+}
+
+var codemirrorDir = codemirrorDir + 'lib/';
+
+var fontAwesomeFontsDir = fontAwesomeDir + 'fonts/';
+
+if (!test('-d', fontAwesomeFontsDir)) {
+  mkdir(fontAwesomeFontsDir);
+}
+
+var codemirrorLibHome = modulesHome + 'codemirror/';
+cp('-Rf', codemirrorLibHome + 'fonts/*', codemirrorDir);
+cp('-Rf', fontAwesomeLibHome + 'css/*.min.css', fontAwesomeCssDir);
+
 console.log('All right!\n');
 

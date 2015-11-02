@@ -25,6 +25,8 @@
     "unirest": "^0.4.2"
   },
   "dependencies": {
+    "codemirror": "^5.8.0",
+    "gbk": "^0.1.0",
     "jquery": "^2.1.4",
     "nedb": "^1.2.1",
     "shelljs": "^0.5.3"

@@ -1,6 +1,7 @@
 /**
  * Created by MurphyL on 15/10/31.
  */
+var gbk = require('gbk');
 // hosts
 var hostsFilePath = '/etc/hosts';
 //'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
@@ -14,7 +15,7 @@ var hosts = function () {
 
 // 加载hosts文件
 hosts.load = function () {
-  fs.readFile(hostsFilePath, 'utf8', function (err, data) {
+  fs.readFile(hostsFilePath, function (err, data) {
     !err && emit('hosts_file_loaded', data);
   });
 };
@@ -31,7 +32,7 @@ hosts.save = function (data) {
   });
 };
 
-
+/*
 var dealHostRow = function (row) {
   // 整行注释
   if(/^#/.test(row)){
@@ -58,7 +59,7 @@ var dealHostRow = function (row) {
     }
     return '<li>' + html + '</li>';
   }
-};
+};*/
 
 /**
  * 需要加载Hosts文件
@@ -71,11 +72,11 @@ listen('hosts_file_required', function () {
  * Hosts文件已经加载成功
  */
 listen('hosts_file_loaded', function (e) {
-  var html = '';
+  /*var html = '';
   e.data.split('\n').forEach(function (text, index) {
     html += dealHostRow(text.trim());
-  });
-  editor.html(html);
+  });*/;
+  editor.setValue(gbk.toString('utf-8', e.data));
 });
 
 /**

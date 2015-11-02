@@ -32,8 +32,8 @@ app.on('ready', function () {
   window.openDevTools();
 
   // 隐藏菜单
-  window.setMenu(null);
-  window.setAutoHideMenuBar(true);
+  /*window.setMenu(null);
+  window.setAutoHideMenuBar(true);*/
 
   // 当 window 被关闭，这个事件会被发出
   window.on('closed', function () {

@@ -51,6 +51,10 @@ html, body {
   display: none;
 }
 
+.error {
+  border-color: red !important;
+}
+
 /*#editor {
   margin: 0.5%;
   padding: 1%;
@@ -70,33 +74,22 @@ html, body {
   margin: 9px;
 }
 
-#editor {
+.CodeMirror, #editor {
   width: 100%;
-  height: 100%;
+  height: 100% !important;
   margin: 0;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
 }
 
-#editor:focus {
-  padding: 11px;
-  border: none;
-}
-
-#editor li {
-  list-style: none;
-}
-
-#editor span {
-  display: inline-block;
-  margin-right: 5px;
-  width: calc(25% - 5px);
-}
-
-#editor .comment {
+.cm-s-default .cm-comment {
   color: grey;
-  font-size: 14px;
+  font-style: italic;
+}
+
+.cm-s-default .cm-string {
+  color: black;
 }
 
 #mask {
@@ -107,6 +100,10 @@ html, body {
   height: 100%;
   opacity: 0.7;
   background-color: #222;
+}
+
+.search {
+  z-index: 999;
 }
 
 #search {
