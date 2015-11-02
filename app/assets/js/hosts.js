@@ -32,35 +32,6 @@ hosts.save = function (data) {
   });
 };
 
-/*
-var dealHostRow = function (row) {
-  // 整行注释
-  if(/^#/.test(row)){
-    return '<li><i class="comment">' + row + '</i></li>';
-  } else {
-    var comment;
-    // 处理行间注释,多个注释拼合为一个
-    if(/#+/.test(row)){
-      var comments = row.split(/#+/);
-      row = comments.shift().trim();
-      comments = comments.map(function(text){
-        return text.trim();
-      });
-      comment = comments.join(' ');
-    }
-    var html = '';
-    // 截断 host 记录
-    row.split(/\s+/).forEach(function(text, index){
-      html += ('<span>' + text + '</span>');
-    })
-    // 拼合 host 记录和行间注释
-    if(comment){
-      html += ('<i class="comment"># ' + comment + '</i>');
-    }
-    return '<li>' + html + '</li>';
-  }
-};*/
-
 /**
  * 需要加载Hosts文件
  */

@@ -7,33 +7,68 @@
   <meta name="format-detection" content="telphone=no, email=no"/>
   <link rel="stylesheet" href="../lib/codemirror/addon/dialog/dialog.css">
   <link rel="stylesheet" href="../lib/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div id="container">
-    <!-- <ul id="editor" contentEditable="true"></ul> -->
-    <textarea name="editor" id="editor" id="" cols="30" rows="10"></textarea>
-  </div>
-  <div id="mask" class="search hidden"></div>
-  <input type="text" id="search" class="search hidden" placeholder="输入搜索内容，然后回车确认...">
+<div id="container">
+  <!-- <ul id="editor" contentEditable="true"></ul> -->
+  <textarea name="editor" id="editor" id="" cols="30" rows="10"></textarea>
+</div>
+<div id="mask" class="search hide"></div>
+<input type="text" id="search" class="search hide" placeholder="输入搜索内容，然后回车确认...">
 </body>
-<script type="text/html" id="date-template">
+<script type="text/html" id="weather-wrapper-template">
   <div style="display: flex; width: 95%;">
-    <div style="flex: 3; font-size: 3.5em; line-height: 1em;">#DATE#日</div>
+    <div style="flex: 3; text-align: center; font-size: 3.5em; line-height: 1em;">#DATE#日</div>
     <div style="flex: 2">
       <div style="font-size: 2em; line-height: 1em;">#MONTH#月</div>
       <div style="font-size: 1.2em; line-height: 1.5em;">#YEAR#年</div>
     </div>
-    <div style="flex: 3; text-align: center;">
-      <img src="../img/#W_CODE#.png" height="50" width="50" alt="天气图片">
-      <span style="margin-left: -20px; font-size: 10px; color: grey;">#W_TEXT#</span>
+    <div style="flex: 4; text-align: center;">
+      <img id="weather-icon" class="hide weather-data" src="#" height="50" width="50" alt="天气图片">
+      <span id="weather-text" class="hide weather-data" style="margin-left: -20px; font-size: 10px; color: grey;"></span>
     </div>
   </div>
-  <p style="padding: 0; margin: 8px 0 0;">第#WEEK_OF_YEAR#周， #DAY_OF_YEAR#天；（#CITY#）#WEATHER#，空气质量#QLTY#。</p>
+  <p style="padding: 0; margin: 8px 0 0;">第#WEEK_OF_YEAR#周， #DAY_OF_YEAR#天
+    <span id="weather-qlty" class="hide weather-data"></span>。
+    <span class="weather-placeholder">需要帮助？那就戳我吧。</span>
+  </p>
+</script>
+<script type="text/html" id="project-swither-template">
+  <div style="text-align: center;" id="project-switcher">
+    <a href="javascript:;" target="_parent" style="text-decoration: none; color: #000;">
+      <i class="fa fa-list"></i>&nbsp;&nbsp;点击切换Hosts方案&nbsp;&nbsp;<i class="arrow fa fa-caret-down"></i>
+    </a>
+  </div>
+</script>
+<script type="text/html" id="project-list-template">
+  <li style="overflow: hidden; margin: 4px 0px; border-radius: 2px; border: 1px solid rgb(222, 222, 222); box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px; color: rgb(68, 68, 68); width: 310px; background-color: rgb(255, 255, 255);">
+    <ul id="projects" class="hide">
+      <li class="project-item" data-project-id="#PROJECT_ID#" style="display: flex;">
+        <span style="flex: 1;">#PROJECT_NAME#</span>
+        <div style="flex: 1; text-align: right">
+          <i class="fa fa-cog" style="color: grey;"></i>
+        </div>
+      </li>
+      <li id="add-project" class="project-item" style="text-align: center; margin-top: 10px; padding: 5px; border-top: 2px solid #111;">
+        <i class="fa fa-plus-circle"></i> 新增Hosts方案
+      </li>
+    </ul>
+  </li>
+</script>
+<script type="text/html" id="project-item-template">
+  <li class="project-item" data-project-id="#PROJECT_ID#" style="display: flex;">
+    <span style="flex: 1;">#PROJECT_NAME#</span>
+    <div style="flex: 1; text-align: right">
+      <i class="fa fa-cog" style="color: grey;"></i>
+    </div>
+  </li>
 </script>
 <script src="../lib/codemirror/lib/codemirror.js"></script>
 <script src="../lib/codemirror/mode/hosts/hosts.js"></script>
 <script src="../lib/codemirror/addon/selection/active-line.js"></script>
 <script src="../lib/codemirror/addon/comment/comment.js"></script>
 <script src="../js/index.js"></script>
+<script src="../lib/layer/layer.js"></script>
 </html>

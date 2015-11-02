@@ -9,69 +9,18 @@ var moment = require('moment');
 var now = moment();
 var dateString = now.format('YYYY-MM-DD');
 
-var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-  hint: true,
-  mode: 'hosts',
-  autohint: true,
-  dragDrop: true,
-  autofocus: true,
-  smartIndent: false,
-  lineNumbers: false,
-  lineWrapping: true,
-  indentWithTabs: true,
-  styleActiveLine: true,
-  extraKeys: {
-    'Ctrl-F': function(){
-      $('.CodeMirror-line').removeClass('hidden');
-      $('.search')
-        .val('')
-        .show()
-        .focus();
-    },
-    'Ctrl-S': function(){
-      $('.CodeMirror-line').removeClass('hidden');
-      $('.CodeMirror, #editor').removeClass('error');
-    }
-  },
-  scrollbarStyle: "native"
-});
-
-$('.search').on('keyup', function(e){
-  if(e.keyCode !== 13 && e.keyCode !== 27) {
-    return true;
-  }
-  if(e.keyCode === 13 && this.value.trim() === ''){
-    console.log('搜索字段为空');
-    return;
-  }
-  if(e.keyCode === 13){ // Enter
-    var index = 0;
-    var query = $('.search:input').val();
-    $('.CodeMirror-line').each(function(i, o){
-      if(o.innerText.indexOf(query) === -1){
-        $(o).addClass('hidden');
-      } else {
-        index ++;
-      }
-    });
-    index && $('.CodeMirror, #editor').addClass('error');
-  }
-  editor.scrollTo(0, 0);
-  $('.search').val('').hide();
-  editor.focus();
-});
-
 // 加载配置信息
 var env = require('../js/conf.json');
 // 初始化常用工具
 require('../js/utils.js')();
 // 弹出天气信息,日历
 require('../js/alert.js')();
+// 初始化编辑器
+var editor = require('../js/editor.js')();
 // 加载Hosts文件
 require('../js/hosts.js')();
-
-// require('../js/editor.js');
-
+// 方案选择器
+require('../js/switcher.js');
 
 
 /*

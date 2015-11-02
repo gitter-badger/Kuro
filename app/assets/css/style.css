@@ -47,7 +47,7 @@ html, body {
 }
  */
 
-.hidden {
+.hide {
   display: none;
 }
 
@@ -55,17 +55,16 @@ html, body {
   border-color: red !important;
 }
 
-/*#editor {
-  margin: 0.5%;
-  padding: 1%;
-  width: 96.8%;
-  height: 95.5%;
-
-  font-size: 14px;
-  line-height: 22px;
-  border: 1px solid #ccc;
-  text-rendering: optimizeLegibility;
-}*/
+.clearfix:before,.clearfix:after{
+  content:"";
+  display:table;
+}
+.clearfix:after{
+  clear:both;
+}
+.clearfix{
+  *zoom:1;/*IE/7/6*/
+}
 
 #container {
   width: calc(100% - 40px);
@@ -114,6 +113,17 @@ html, body {
   height: 3em;
   line-height: 2em;
   text-indent: 1em;
+  font-size: 0.8em;
 
   border: 3px solid #eee;
+}
+
+#projects {
+  margin: 10px 0;
+}
+
+#projects li {
+  margin: 0 15% 0 0;
+  padding: 0;
+  list-style: none;
 }
