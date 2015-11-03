@@ -40,7 +40,7 @@ var fillWeatherData = function (weather) {
   $('#weather-icon').attr('src', iconUrl);
   $('#weather-text').text(weatherText);
   var qlty = weather.brf + '，空气质量' + weather.qlty;
-  if(qlty.length < 10){
+  if(qlty.length < 8){
     qlty = '（' + weather.city + '）' + qlty;
   }
   $('#weather-qlty').text('。' + qlty);
