@@ -34,7 +34,7 @@ module.exports = function(){
          });*/
       },
       'Ctrl-S': function(){
-        $('.CodeMirror-line').removeClass('hide');
+        $('.CodeMirror-line').removeAttr('style');
         $('.CodeMirror, #editor').removeClass('error');
       }
     },
@@ -55,7 +55,7 @@ $('.search').on('keyup', function(e){
     var query = $('.search:input').val();
     $('.CodeMirror-line').each(function(i, o){
       if(o.innerText.indexOf(query) === -1){
-        $(o).addClass('hide');
+        $(o).css({display: 'none'});
       } else {
         index ++;
       }
